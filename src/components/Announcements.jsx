@@ -15,7 +15,7 @@ const ListPosts = () => {
       .then(response => {
         setData(response.data.data); // Assuming 'corporateAnnouncementList' contains the array of data
         setLoading(false);
-        console.log(response.data.data);
+        // console.log(response.data.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
