@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import {
-  PermissionsAndroid,
+  // PermissionsAndroid,
   Text,
   TextInput,
   TouchableOpacity,
@@ -13,7 +13,10 @@ import { db } from "./Config";
 const LoginView = () => {
   const navigation = useNavigation();
   const [user, setUser] = useState([]);
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({
+    email: "brijdobariya8115@gmail.com",
+    password: "111",
+  });
 
   const fetchUsers = async () => {
     try {
@@ -28,32 +31,31 @@ const LoginView = () => {
     }
   };
 
-  const requestInternetPermission = async () => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.INTERNET,
-        {
-          title: "Internet Permission",
-          message: "This app needs internet permission to function properly.",
-          buttonNeutral: "Ask Me Later",
-          buttonNegative: "Cancel",
-          buttonPositive: "OK",
-        }
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log("Internet permission granted");
-        // You can perform network-related operations here
-      } else {
-        console.log("Internet permission denied");
-      }
-    } catch (err) {
-      console.warn(err);
-    }
-  };
+  // const requestInternetPermission = async () => {
+  //   try {
+  //     const granted = await PermissionsAndroid.request(
+  //       PermissionsAndroid.PERMISSIONS.INTERNET,
+  //       {
+  //         title: "Internet Permission",
+  //         message: "This app needs internet permission to function properly.",
+  //         buttonNeutral: "Ask Me Later",
+  //         buttonNegative: "Cancel",
+  //         buttonPositive: "OK",
+  //       }
+  //     );
+  //     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+  //       console.log("Internet permission granted");
+  //     } else {
+  //       console.log("Internet permission denied");
+  //     }
+  //   } catch (err) {
+  //     console.warn(err);
+  //   }
+  // };
 
   useEffect(() => {
     fetchUsers();
-    requestInternetPermission();
+    // requestInternetPermission();
   }, []);
 
   const handleChange = (name, value) => {
